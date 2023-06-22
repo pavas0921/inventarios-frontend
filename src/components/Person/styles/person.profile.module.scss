@@ -1,0 +1,31 @@
+.box_main {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+.box_inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 48%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.inputs_fields {
+  width: 95%;
+}
+
+.box_inputs_fields {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
