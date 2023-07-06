@@ -1,4 +1,4 @@
-# inventarios-fronten
+# inventarios-frontend
 Esta aplicación está construida en react.js con vite. se recomienda instalar node en su equipo para su correcto funcionamiento. 
 
 Esta alicación utiliza redux toolkit para manejar los estados. 
