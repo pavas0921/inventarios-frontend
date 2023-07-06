@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Message } from "../Message";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  registerOwner,
-  selectOwnerState,
-} from "../../features/owner/ownerSlice";
+  registerTenant,
+  selectTenantState,
+} from "../../features/tenant/tenantSlice";
 import {
   TextField,
   Button,
   Typography,
-  Box,
   CircularProgress,
+  Box,
 } from "@mui/material";
 
-const PersonForm = () => {
-  const [owner, setOwner] = useState({
+const TenantForm = () => {
+  const [tenant, setTenant] = useState({
     first_name: "",
     last_name: "",
     cedula: "",
@@ -22,7 +22,7 @@ const PersonForm = () => {
     address: "",
     phone: "",
   });
-  const created = useSelector(selectOwnerState);
+  const created = useSelector(selectTenantState);
   const dispatch = useDispatch();
   const pathname = window.location.pathname; // "/Propietarios"
   const value = pathname.substring(1);
@@ -32,14 +32,14 @@ const PersonForm = () => {
   useEffect(() => {}, [created]);
 
   const handleSubmit = (e) => {
-    dispatch(registerOwner(owner));
-    console.log(created);
     e.preventDefault();
+    dispatch(registerTenant(tenant));
+    console.log(created);
   };
 
   return (
     <div>
-      {created.loading && (
+      {created && created.loading && (
         <Box
           sx={{
             display: "flex",
@@ -52,7 +52,7 @@ const PersonForm = () => {
         </Box>
       )}
 
-      {created.owner.status === 201 && <Message path="/Propietarios" />}
+      {created.tenant.status === 201 && <Message path="/Inquilinos" />}
       <Box
         sx={{
           width: "100%",
@@ -104,7 +104,7 @@ const PersonForm = () => {
                 name="first_name"
                 autoComplete="first_name"
                 onChange={(e) =>
-                  setOwner({ ...owner, first_name: e.target.value })
+                  setTenant({ ...tenant, first_name: e.target.value })
                 }
               />
               <TextField
@@ -116,7 +116,7 @@ const PersonForm = () => {
                 name="last_name"
                 autoComplete="last_name"
                 onChange={(e) =>
-                  setOwner({ ...owner, last_name: e.target.value })
+                  setTenant({ ...tenant, last_name: e.target.value })
                 }
               />
               <TextField
@@ -127,7 +127,9 @@ const PersonForm = () => {
                 label="Cédula"
                 name="cedula"
                 autoComplete="cedula"
-                onChange={(e) => setOwner({ ...owner, cedula: e.target.value })}
+                onChange={(e) =>
+                  setTenant({ ...tenant, cedula: e.target.value })
+                }
               />
             </Box>
             <Box
@@ -147,7 +149,9 @@ const PersonForm = () => {
                 label="Correo"
                 name="email"
                 autoComplete="email"
-                onChange={(e) => setOwner({ ...owner, email: e.target.value })}
+                onChange={(e) =>
+                  setTenant({ ...tenant, email: e.target.value })
+                }
               />
               <TextField
                 margin="normal"
@@ -158,7 +162,7 @@ const PersonForm = () => {
                 name="address"
                 autoComplete="address"
                 onChange={(e) =>
-                  setOwner({ ...owner, address: e.target.value })
+                  setTenant({ ...tenant, address: e.target.value })
                 }
               />
               <TextField
@@ -169,7 +173,9 @@ const PersonForm = () => {
                 label="Celular"
                 name="phone"
                 autoComplete="phone"
-                onChange={(e) => setOwner({ ...owner, phone: e.target.value })}
+                onChange={(e) =>
+                  setTenant({ ...tenant, phone: e.target.value })
+                }
               />
             </Box>
           </Box>
@@ -193,4 +199,4 @@ const PersonForm = () => {
   );
 };
 
-export default PersonForm;
+export default TenantForm;

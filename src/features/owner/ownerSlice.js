@@ -1,5 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { registerOwnerAPI, getAllOwnersApi } from "../../services/owner";
+import {
+  registerOwnerAPI,
+  getAllOwnersApi,
+  getAOwnersByCedulaApi,
+} from "../../services/owner";
 
 const initialState = {
   owner: [],
@@ -10,6 +14,15 @@ export const getAllOwners = createAsyncThunk("owner/getAllOwners", async () => {
   const data = await getAllOwnersApi();
   return data;
 });
+
+export const getOwnersByCedula = createAsyncThunk(
+  "owner/getOwnersByCedula",
+  async (id) => {
+    console.log("*****", id);
+    const data = await getAOwnersByCedulaApi(id);
+    return data;
+  }
+);
 
 export const registerOwner = createAsyncThunk("owner/create", async (body) => {
   const data = await registerOwnerAPI(body);
@@ -33,6 +46,13 @@ export const ownerSlice = createSlice({
         state.loading = true;
       })
       .addCase(getAllOwners.fulfilled, (state, action) => {
+        state.loading = false;
+        state.owner = action.payload;
+      })
+      .addCase(getOwnersByCedula.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getOwnersByCedula.fulfilled, (state, action) => {
         state.loading = false;
         state.owner = action.payload;
       });

@@ -1,19 +1,13 @@
 import React, { useEffect } from "react";
 //import Loader from "../Loader/Loader";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getOwnersByCedula,
-  selectOwnerState,
-} from "../features/owner/ownerSlice";
 import { useParams } from "react-router-dom";
 import { Box, CssBaseline } from "@mui/material";
 import { Navbar } from "../components/Navbar";
-import { PersonProfile } from "../components/Person";
+import { TenantProfile } from "../components/Tenant";
 import { Property } from "../components/Property";
-
 import styles from "./styles/person.details.module.scss";
 
-const PersonDetails = () => {
+const TenantDetails = () => {
   return (
     <>
       <CssBaseline />
@@ -21,7 +15,7 @@ const PersonDetails = () => {
         <Navbar />
       </Box>
       <Box className={styles.box_profile}>
-        <PersonProfile />
+        <TenantProfile />
       </Box>
       <Box className={styles.box_table}>
         <Property />
@@ -30,4 +24,4 @@ const PersonDetails = () => {
   );
 };
 
-export default PersonDetails;
+export default TenantDetails;

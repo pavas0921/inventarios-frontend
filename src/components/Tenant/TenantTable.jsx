@@ -3,9 +3,9 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getAllOwners,
-  selectOwnerState,
-} from "../../features/owner/ownerSlice";
+  getAllTenants,
+  selectTenantState,
+} from "../../features/tenant/tenantSlice";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -19,15 +19,15 @@ import { Typography } from "@mui/joy";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditIcon from "@mui/icons-material/Edit";
 
-const PersonTable = () => {
-  const data = useSelector(selectOwnerState);
-  const { owner } = data;
-  const { status, item } = owner;
-  const navigate = useNavigate();
+const TenantTable = () => {
+  const data = useSelector(selectTenantState);
+  const { tenant } = data;
+  const { status, item } = tenant;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getAllOwners());
+    dispatch(getAllTenants());
   }, []);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const PersonTable = () => {
       }}
     >
       {data.loading && <Loader />}
-      <Typography component="h1">Lista de Propietarios</Typography>
+      <Typography component="h1">Lista de Inquilinos</Typography>
       <TableContainer
         component={Paper}
         sx={{
@@ -64,12 +64,12 @@ const PersonTable = () => {
           <TableHead>
             <TableRow>
               <TableCell>Nombres</TableCell>
-              <TableCell align="right">Apellidos</TableCell>
-              <TableCell align="right">Cédula</TableCell>
-              <TableCell align="right">Email</TableCell>
-              <TableCell align="right">Dirección</TableCell>
-              <TableCell align="right">Teléfono</TableCell>
-              <TableCell align="right">Acciones</TableCell>
+              <TableCell>Apellidos</TableCell>
+              <TableCell>Cédula</TableCell>
+              <TableCell>Email</TableCell>
+              <TableCell>Dirección</TableCell>
+              <TableCell>Teléfono</TableCell>
+              <TableCell>Acciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -82,13 +82,13 @@ const PersonTable = () => {
                   <TableCell component="th" scope="row">
                     {row.first_name}
                   </TableCell>
-                  <TableCell align="right">{row.last_name}</TableCell>
-                  <TableCell align="right">{row.cedula}</TableCell>
-                  <TableCell align="right">{row.email}</TableCell>
-                  <TableCell align="right">{row.address}</TableCell>
-                  <TableCell align="right">{row.phone}</TableCell>
+                  <TableCell>{row.last_name}</TableCell>
+                  <TableCell>{row.cedula}</TableCell>
+                  <TableCell>{row.email}</TableCell>
+                  <TableCell>{row.address}</TableCell>
+                  <TableCell>{row.phone}</TableCell>
                   <TableCell>
-                    <Button onClick={() => goTo(`propietarios/${row.cedula}`)}>
+                    <Button onClick={() => goTo(`inquilinos/${row.cedula}`)}>
                       <RemoveRedEyeIcon />
                     </Button>
                     <Button onClick={() => goTo("")}>
@@ -104,4 +104,4 @@ const PersonTable = () => {
   );
 };
 
-export default PersonTable;
+export default TenantTable;

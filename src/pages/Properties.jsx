@@ -1,28 +1,27 @@
 import React from "react";
+import { PropertyForm } from "../components/Property";
 import { Box, CssBaseline } from "@mui/material";
 import { Navbar } from "../components/Navbar";
-import { InventoryTable } from "../components/Inventory";
 
-const Dashboard = () => {
+const Properties = () => {
   return (
     <>
       <CssBaseline />
-      <Box sx={{ width: "100vw", backgroundColor: "yellow" }}>
+      <Box sx={{ width: "100%" }}>
         <Navbar />
       </Box>
       <Box
         sx={{
-          width: "100%",
+          marginTop: 4,
           display: "flex",
           justifyContent: "center",
-          aliginItems: "center",
-          marginTop: 3,
+          alignItems: "center",
         }}
       >
-        <InventoryTable />
+        <PropertyForm />
       </Box>
     </>
   );
 };
 
-export default Dashboard;
+export default Properties;

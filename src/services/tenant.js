@@ -1,6 +1,6 @@
-export const getAllOwnersApi = async () => {
+export const getAllTenantsApi = async () => {
   try {
-    const request = await fetch(`http://localhost:4000/owner`, {
+    const request = await fetch(`http://localhost:4000/tenant`, {
       method: "GET",
       headers: {
         //Authorization: `Bearer ${token}`,
@@ -13,10 +13,9 @@ export const getAllOwnersApi = async () => {
   }
 };
 
-export const getAOwnersByCedulaApi = async (id) => {
-  console.log(id);
+export const getTenantsByCedulaApi = async (id) => {
   try {
-    const request = await fetch(`http://localhost:4000/owner/${id}`, {
+    const request = await fetch(`http://localhost:4000/tenant/${id}`, {
       method: "GET",
       headers: {
         //Authorization: `Bearer ${token}`,
@@ -29,9 +28,9 @@ export const getAOwnersByCedulaApi = async (id) => {
   }
 };
 
-export const registerOwnerAPI = async (body) => {
+export const registerTenantAPI = async (body) => {
   try {
-    const req = await fetch("http://localhost:4000/owner", {
+    const req = await fetch("http://localhost:4000/tenant", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

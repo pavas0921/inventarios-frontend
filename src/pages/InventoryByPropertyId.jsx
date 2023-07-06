@@ -1,28 +1,28 @@
 import React from "react";
 import { Box, CssBaseline } from "@mui/material";
 import { Navbar } from "../components/Navbar";
-import { InventoryTable } from "../components/Inventory";
+import { InventoryByProperty } from "../components/Inventory";
 
-const Dashboard = () => {
+const InventoryByPropertyId = () => {
   return (
     <>
       <CssBaseline />
-      <Box sx={{ width: "100vw", backgroundColor: "yellow" }}>
+      <Box sx={{ width: "100vw" }}>
         <Navbar />
       </Box>
       <Box
         sx={{
           width: "100%",
           display: "flex",
+          alignItems: "center",
           justifyContent: "center",
-          aliginItems: "center",
-          marginTop: 3,
+          marginTop: 2,
         }}
       >
-        <InventoryTable />
+        <InventoryByProperty />
       </Box>
     </>
   );
 };
 
-export default Dashboard;
+export default InventoryByPropertyId;

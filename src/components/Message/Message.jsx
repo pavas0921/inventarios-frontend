@@ -3,11 +3,12 @@ import { Box, Alert, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useNavigate } from "react-router-dom";
 
-const Message = () => {
+const Message = (path) => {
   const navigate = useNavigate();
 
   const handleAlertClose = () => {
-    navigate("/");
+    console.log(path.path);
+    navigate(path.path);
   };
 
   return (
@@ -16,7 +17,7 @@ const Message = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        marginTop: 2,
       }}
     >
       <Box sx={{ width: "400px" }}>

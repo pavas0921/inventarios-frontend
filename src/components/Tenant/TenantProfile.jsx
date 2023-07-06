@@ -2,34 +2,33 @@ import React, { useEffect } from "react";
 //import Loader from "../Loader/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  getOwnersByCedula,
-  selectOwnerState,
-} from "../../features/owner/ownerSlice";
+  getTenantsByCedula,
+  selectTenantState,
+} from "../../features/tenant/tenantSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import styles from "./styles/person.profile.module.scss";
+import { Navigate } from "react-router-dom";
 
-const PersonProfile = () => {
+const TenantProfile = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const data = useSelector(selectOwnerState);
+  const data = useSelector(selectTenantState);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getOwnersByCedula(id));
+    dispatch(getTenantsByCedula(id));
   }, []);
 
   useEffect(() => {
-    console.log("id*****", id);
-    console.log("data**", data.owner[0]);
-  }, [data.owner]);
-
-  const goTo = () => {
-    navigate("/propiedades/add");
-  };
+    if (data) {
+      const tenantId = data.tenant[0]?._id;
+      sessionStorage.setItem("tenantId", tenantId);
+    }
+  }, [data]);
 
   return (
     <Box className={styles.box_main}>
@@ -40,7 +39,7 @@ const PersonProfile = () => {
               className={styles.inputs_fields}
               id="outlined-read-only-input"
               label="Nombres"
-              value={data.owner[0]?.first_name || ""}
+              value={data.tenant[0]?.first_name || ""}
               InputProps={{
                 readOnly: true,
               }}
@@ -50,7 +49,7 @@ const PersonProfile = () => {
               className={styles.inputs_fields}
               id="outlined-read-only-input"
               label="Read Only"
-              value={data.owner[0]?.last_name || ""}
+              value={data.tenant[0]?.last_name || ""}
               InputProps={{
                 readOnly: true,
               }}
@@ -60,7 +59,7 @@ const PersonProfile = () => {
               className={styles.inputs_fields}
               id="outlined-read-only-input"
               label="Read Only"
-              value={data.owner[0]?.cedula || ""}
+              value={data.tenant[0]?.cedula || ""}
               InputProps={{
                 readOnly: true,
               }}
@@ -72,7 +71,7 @@ const PersonProfile = () => {
               className={styles.inputs_fields}
               id="outlined-read-only-input"
               label="Read Only"
-              value={data.owner[0]?.email || ""}
+              value={data.tenant[0]?.email || ""}
               InputProps={{
                 readOnly: true,
               }}
@@ -81,7 +80,7 @@ const PersonProfile = () => {
               className={styles.inputs_fields}
               id="outlined-read-only-input"
               label="Read Only"
-              value={data.owner[0]?.address || ""}
+              value={data.tenant[0]?.address || ""}
               InputProps={{
                 readOnly: true,
               }}
@@ -90,7 +89,7 @@ const PersonProfile = () => {
               className={styles.inputs_fields}
               id="outlined-read-only-input"
               label="Read Only"
-              value={data.owner[0]?.phone || ""}
+              value={data.tenant[0]?.phone || ""}
               InputProps={{
                 readOnly: true,
               }}
@@ -101,7 +100,7 @@ const PersonProfile = () => {
 
       <Box className={styles.box_container}>
         <Box sx={{ paddingBottom: 2 }}>
-          <Button size="small" variant="contained" onClick={goTo}>
+          <Button size="small" variant="contained">
             Agregar Propiedad
           </Button>
         </Box>
@@ -110,4 +109,4 @@ const PersonProfile = () => {
   );
 };
 
-export default PersonProfile;
+export default TenantProfile;

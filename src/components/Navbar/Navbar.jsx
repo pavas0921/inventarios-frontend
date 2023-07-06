@@ -6,7 +6,13 @@ import SubMenu from "../SubMenu/SubMenu";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const menu = ["Propietarios", "Inquilinos", "Ambientes", "Ítems"];
+  const menu = [
+    "Dashboard",
+    "Propietarios",
+    "Inquilinos",
+    "Ambientes",
+    "Items",
+  ];
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
 
