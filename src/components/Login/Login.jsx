@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login, selectLoginState } from "../../features/login/loginSlice";
-import { useNavigate } from "react-router-dom";
 import {
-  Container,
-  TextField,
-  Button,
-  Typography,
   Box,
-  CssBaseline,
+  Button,
   CircularProgress,
-  Avatar,
+  Container,
+  CssBaseline,
+  TextField,
+  Typography
 } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { login, selectLoginState } from "../../features/login/loginSlice";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -19,7 +18,10 @@ const Login = () => {
     password: "",
   });
   const dispatch = useDispatch();
-  const { token, userid, loading } = useSelector(selectLoginState);
+  const dataLogin = useSelector(selectLoginState);  
+  const { loading, user } = dataLogin
+  const token = user?.data?.token;
+  const iduser = user?.data?.iduser;
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -30,12 +32,10 @@ const Login = () => {
   useEffect(() => {
     if (token) {
       sessionStorage.setItem("token", token);
-      sessionStorage.setItem("userid", userid);
-      if (!loading) navigate("/dashboard");
-    } else {
-      console.log("logged out", token);
-    }
-  }, [token, userid, loading]);
+      sessionStorage.setItem("userid", iduser);
+      navigate("/dashboard");
+    }     
+  }, [token]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,6 +44,8 @@ const Login = () => {
       [name]: value,
     }));
   };
+
+  
 
   return (
     <div>

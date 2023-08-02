@@ -1,13 +1,13 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { loginAPI } from "../../services/user";
 
 const initialState = {
-  token: "",
-  _id: "",
+  user: {},
   loading: false,
 };
 
 export const login = createAsyncThunk("user/login", async (credentials) => {
+  
   const data = await loginAPI(credentials);
   return data;
 });
@@ -22,9 +22,7 @@ export const loginSlice = createSlice({
         state.loading = true;
       })
       .addCase(login.fulfilled, (state, action) => {
-        (state.loading = false),
-          (state.token = action.payload.token),
-          (state.userid = action.payload._id);
+        (state.loading = false), (state.user = action.payload);
       });
   },
 });
