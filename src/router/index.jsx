@@ -78,7 +78,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/propiedades/add",
+    path: "/propiedades/",
     element: <PropertyForm />,
     errorElement: <div>Hubo un error!!</div>,
   },

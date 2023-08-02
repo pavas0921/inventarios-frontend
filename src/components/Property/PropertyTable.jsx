@@ -29,7 +29,7 @@ const PropertyTable = () => {
   }, [data]);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer sx={{ marginTop: 3 }} component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>

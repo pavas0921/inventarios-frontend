@@ -25,12 +25,14 @@ const InventoryDetails = () => {
   let newInventory;
 
   useEffect(() => {
+    console.log("data***", index);
     if (data.inventoryDetail.length === 0) {
       console.log("no");
       dispatch(getAllInventoryDetail());
     } else {
       if (item[index]) newInventory = item[index];
-      console.log(newInventory.inventoryDetail[0].itemId._id);
+      console.log(newInventory);
+      //console.log(newInventory.inventoryDetail[0].itemId._id);
     }
   }, [data]);
 
@@ -55,14 +57,14 @@ const InventoryDetails = () => {
           </TableHead>
           <TableBody>
             {newInventory &&
-              newInventory.inventoryDetail &&
-              newInventory.inventoryDetail.map((row, index) => (
+              newInventory.inventoryDetails &&
+              newInventory.inventoryDetails.map((row, index) => (
                 <TableRow
                   key={index}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {newInventory.inventoryDetail._id}
+                    {newInventory.inventoryDetails._id}
                   </TableCell>
                   <TableCell align="right"></TableCell>
                   <TableCell align="right"></TableCell>

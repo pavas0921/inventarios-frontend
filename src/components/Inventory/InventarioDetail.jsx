@@ -87,9 +87,9 @@ const InventarioDetails = () => {
   useEffect(() => {
     if (itemDetailData.itemDetail.status === 201) {
       const newInventoryDetail = {
-        ambientId: itemDetailData.itemDetail.item._id,
+        ambientId: ambientSelected.ambientId,
         itemId: itemDetail.itemId,
-        itemDetailId: ambientSelected.ambientId,
+        itemDetailId: itemDetailData.itemDetail.item._id,
       };
       setInventoryDetail([...inventoryDetail, newInventoryDetail]);
     }
@@ -105,6 +105,7 @@ const InventarioDetails = () => {
   };
   const handleClick = (e) => {
     e.preventDefault();
+    console.log("itemDetail**", itemDetail);
     dispatch(registerItemDetail(itemDetail));
   };
 
@@ -151,6 +152,7 @@ const InventarioDetails = () => {
             )}
             value={ambientOptions.ambientId}
             onChange={(event, newValue) => {
+              console.log("****", newValue);
               setAmbientSelected({
                 ...ambientSelected,
                 ambientId: newValue.id,

@@ -6,6 +6,7 @@
   flex-direction: column;
   border: 1px solid #ccc;
   border-radius: 5px;
+  padding: 20px;
 }
 
 .box_container {
@@ -20,22 +21,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
   flex-wrap: wrap;
-  width: 100%;
-  padding-top: 20px;
-}
-
-.inputs_fields {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.box_inputs_fields {
-  width: 100%;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
 }

@@ -86,7 +86,15 @@ const PropertyForm = () => {
   const isOptionEqualToValue = (option, value) => option.label === value;
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
       <Box className={styles.box_main}>
         <Box className={styles.box_container}>
           <TextField
@@ -109,7 +117,7 @@ const PropertyForm = () => {
             }}
             id="controllable-states-demo"
             options={propertyType}
-            sx={{ width: 300 }}
+            sx={{ width: 300, marginTop: 1 }}
             renderInput={(params) => (
               <TextField {...params} label="Tipo de propiedad" />
             )}

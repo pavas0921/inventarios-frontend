@@ -7,12 +7,17 @@ const Properties = () => {
   return (
     <>
       <CssBaseline />
-      <Box sx={{ width: "100%" }}>
+      <Box
+        sx={{
+          width: "100%",
+        }}
+      >
         <Navbar />
       </Box>
       <Box
         sx={{
-          marginTop: 4,
+          marginTop: 2,
+          width: "100%",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
