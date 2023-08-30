@@ -1,5 +1,6 @@
-import Tenant from "./Tenant";
-import TenantTable from "./TenantTable";
+import TenantForm from "./TenantForm";
 import TenantProfile from "./TenantProfile";
+import TenantTable from "./TenantTable";
 
-export { Tenant, TenantTable, TenantProfile };
+export { TenantForm, TenantProfile, TenantTable };
+

@@ -1,7 +1,7 @@
-import React from "react";
 import { Box, CssBaseline } from "@mui/material";
+import React from "react";
 import { Navbar } from "../components/Navbar";
-import { PersonForm } from "../components/Person";
+import { TenantForm } from "../components/Tenant";
 
 const Tenant = () => {
   return (
@@ -11,7 +11,7 @@ const Tenant = () => {
         <Navbar />
       </Box>
       <Box>
-        <PersonForm />
+        <TenantForm />
       </Box>
     </>
   );

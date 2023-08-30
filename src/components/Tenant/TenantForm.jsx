@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Message } from "../Message";
-import { useSelector, useDispatch } from "react-redux";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   registerTenant,
   selectTenantState,
 } from "../../features/tenant/tenantSlice";
-import {
-  TextField,
-  Button,
-  Typography,
-  CircularProgress,
-  Box,
-} from "@mui/material";
+import { Message } from "../Message";
 
 const TenantForm = () => {
   const [tenant, setTenant] = useState({
@@ -27,9 +27,9 @@ const TenantForm = () => {
   const pathname = window.location.pathname; // "/Propietarios"
   const value = pathname.substring(1);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
-  useEffect(() => {}, [created]);
+  useEffect(() => { }, [created]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,7 +76,7 @@ const TenantForm = () => {
           }}
         >
           <Typography component="h1" variant="h5" marginBottom={3}>
-            Registro de {value}
+            Registro de Inquilinos
           </Typography>
           <Box
             sx={{
