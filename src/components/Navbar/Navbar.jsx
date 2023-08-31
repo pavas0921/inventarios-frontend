@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
   const [anchorPropietarios, setAnchorPropietarios] = React.useState(null);
   const [anchorInquilinos, setAnchorInquilinos] = React.useState(null);
-  const [anchorFacturacion, setAnchorFacturacion] = React.useState(null);
+  const [anchorPropiedades, setAnchorPropiedades] = React.useState(null);
   const [anchorCartera, setAnchorCartera] = React.useState(null);
   const [anchorRips, setAnchorRips] = React.useState(null);
   const [anchorInformes, setAnchorInformes] = React.useState(null);
@@ -37,8 +37,18 @@ const Navbar = () => {
     setAnchorInquilinos(event.currentTarget);
   };
 
+
   const handleCloseInquilinos = () => {
     anchorInquilinos(null);
+  };
+
+  const handleClickPropiedades = (event) => {
+    setAnchorPropiedades(event.currentTarget);
+  };
+
+
+  const handleClosePropiedades = () => {
+    anchorPropiedades(null);
   };
 
   const handleClickAdministracion = (event) => {
@@ -94,6 +104,18 @@ const Navbar = () => {
               <MenuItem onClick={handleClosePropietarios}>Eventos por Paciente</MenuItem>
             </Menu>
 
+            <Button color="inherit" onClick={handleClickPropiedades} sx={{ fontSize: '1rem' }}>
+              Propiedades
+            </Button>
+            <Menu
+              anchorEl={anchorPropiedades}
+              open={Boolean(anchorPropiedades)}
+              onClose={handleClosePropiedades}
+            >
+              <MenuItem onClick={() => navigate('/propiedades/add')} >Registrar Usuario</MenuItem>
+              <MenuItem onClick={() => navigate('/propiedades')}>Maestro de Usuarios</MenuItem>
+            </Menu>
+
 
             <Button color="inherit" onClick={handleClickAdministracion} sx={{ fontSize: '1rem' }}>
               Administracion
@@ -133,6 +155,19 @@ const Navbar = () => {
               <MenuItem onClick={() => navigate('/inquilinos')}>Listado de Inquilinos</MenuItem>
               <MenuItem onClick={() => navigate('/inquilinos/add')}>Agregar Inquilinos</MenuItem>
             </Menu>
+
+            <Button color="inherit" onClick={handleClickPropiedades} sx={{ fontWeight: "bold", textTransform: 'capitalize', fontSize: '1rem' }}>
+              Propiedades
+            </Button>
+            <Menu
+              anchorEl={anchorPropiedades}
+              open={Boolean(anchorPropiedades)}
+              onClose={handleClosePropiedades}
+            >
+              <MenuItem onClick={() => navigate('/propiedades/add')}>Agregar Propiedad</MenuItem>
+              <MenuItem onClick={() => navigate('/propiedades')}>Lista de Propiedades</MenuItem>
+            </Menu>
+
 
 
 

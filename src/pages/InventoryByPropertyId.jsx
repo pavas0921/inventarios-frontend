@@ -1,7 +1,8 @@
+import Box from '@mui/material/Box';
+import CssBaseline from "@mui/material/CssBaseline";
 import React from "react";
-import { Box, CssBaseline } from "@mui/material";
-import { Navbar } from "../components/Navbar";
 import { InventoryByProperty } from "../components/Inventory";
+import { Navbar } from "../components/Navbar";
 
 const InventoryByPropertyId = () => {
   return (

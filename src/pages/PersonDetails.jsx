@@ -1,12 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 //import Loader from "../Loader/Loader";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  getOwnersByCedula,
-  selectOwnerState,
-} from "../features/owner/ownerSlice";
-import { useParams } from "react-router-dom";
-import { Box, CssBaseline } from "@mui/material";
+import Box from '@mui/material/Box';
+import CssBaseline from "@mui/material/CssBaseline";
 import { Navbar } from "../components/Navbar";
 import { PersonProfile } from "../components/Person";
 import { Property } from "../components/Property";
