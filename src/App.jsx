@@ -11,9 +11,11 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
-        <CustomRouterProvider />
-      </ThemeProvider>
+      <CustomRouterProvider>
+        <ThemeProvider theme={theme}>
+
+        </ThemeProvider>
+      </CustomRouterProvider>
 
     </>
   );

@@ -15,9 +15,9 @@ const Navbar = () => {
   const [anchorPropietarios, setAnchorPropietarios] = React.useState(null);
   const [anchorInquilinos, setAnchorInquilinos] = React.useState(null);
   const [anchorPropiedades, setAnchorPropiedades] = React.useState(null);
-  const [anchorCartera, setAnchorCartera] = React.useState(null);
-  const [anchorRips, setAnchorRips] = React.useState(null);
-  const [anchorInformes, setAnchorInformes] = React.useState(null);
+  const [anchorItem, setAnchorItem] = React.useState(null);
+  const [anchorAmbientes, setAnchorAmbientes] = React.useState(null);
+  const [anchorInventarios, setAnchorInventarios] = React.useState(null);
   const [anchorAdministracion, setAnchorAdministracion] = React.useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const theme = useTheme();
@@ -49,6 +49,33 @@ const Navbar = () => {
 
   const handleClosePropiedades = () => {
     anchorPropiedades(null);
+  };
+
+  const handleClickItem = (event) => {
+    setAnchorItem(event.currentTarget);
+  };
+
+
+  const handleCloseItem = () => {
+    setAnchorItem(null);
+  };
+
+  const handleClickAmbientes = (event) => {
+    setAnchorAmbientes(event.currentTarget);
+  };
+
+
+  const handleCloseAmbientes = () => {
+    setAnchorAmbientes(null);
+  };
+
+  const handleClickInventarios = (event) => {
+    setAnchorInventarios(event.currentTarget);
+  };
+
+
+  const handleCloseInventarios = () => {
+    setAnchorInventarios(null);
   };
 
   const handleClickAdministracion = (event) => {
@@ -116,6 +143,44 @@ const Navbar = () => {
               <MenuItem onClick={() => navigate('/propiedades')}>Maestro de Usuarios</MenuItem>
             </Menu>
 
+            <Button color="inherit" onClick={handleClickItem} sx={{ fontSize: '1rem' }}>
+              Items
+            </Button>
+            <Menu
+              anchorEl={anchorItem}
+              open={Boolean(anchorItem)}
+              onClose={handleCloseItem}
+            >
+              <MenuItem onClick={() => navigate('/item/add')} >Registrar Usuario</MenuItem>
+              <MenuItem onClick={() => navigate('/propiedades')}>Maestro de Usuarios</MenuItem>
+            </Menu>
+
+            <Button color="inherit" onClick={handleClickAmbientes} sx={{ fontSize: '1rem' }}>
+              Ambientes
+            </Button>
+            <Menu
+              anchorEl={anchorAmbientes}
+              open={Boolean(anchorAmbientes)}
+              onClose={handleCloseAmbientes}
+            >
+              <MenuItem onClick={() => navigate('/item/add')} >Registrar Usuario</MenuItem>
+              <MenuItem onClick={() => navigate('/propiedades')}>Maestro de Usuarios</MenuItem>
+            </Menu>
+
+            <Button color="inherit" onClick={handleClickInventarios} sx={{ fontSize: '1rem' }}>
+              Inventarios
+            </Button>
+            <Menu
+              anchorEl={anchorInventarios}
+              open={Boolean(anchorInventarios)}
+              onClose={handleCloseInventarios}
+            >
+              <MenuItem onClick={() => navigate('/item/add')} >Registrar Usuario</MenuItem>
+              <MenuItem onClick={() => navigate('/propiedades')}>Maestro de Usuarios</MenuItem>
+            </Menu>
+
+
+
 
             <Button color="inherit" onClick={handleClickAdministracion} sx={{ fontSize: '1rem' }}>
               Administracion
@@ -166,6 +231,43 @@ const Navbar = () => {
             >
               <MenuItem onClick={() => navigate('/propiedades/add')}>Agregar Propiedad</MenuItem>
               <MenuItem onClick={() => navigate('/propiedades')}>Lista de Propiedades</MenuItem>
+            </Menu>
+
+            <Button color="inherit" onClick={handleClickItem} sx={{ fontWeight: "bold", textTransform: 'capitalize', fontSize: '1rem' }}>
+              Items
+            </Button>
+            <Menu
+              anchorEl={anchorItem}
+              open={Boolean(anchorItem)}
+              onClose={handleCloseItem}
+            >
+              <MenuItem onClick={() => navigate('/item/add')}>Agregar Item</MenuItem>
+              <MenuItem onClick={() => navigate('/propiedades')}>Lista de Items</MenuItem>
+            </Menu>
+
+            <Button color="inherit" onClick={handleClickAmbientes} sx={{ fontWeight: "bold", textTransform: 'capitalize', fontSize: '1rem' }}>
+              Ambientes
+            </Button>
+            <Menu
+              anchorEl={anchorAmbientes}
+              open={Boolean(anchorAmbientes)}
+              onClose={handleCloseAmbientes}
+            >
+              <MenuItem onClick={() => navigate("/ambientes/add")}>Agregar Ambiente</MenuItem>
+              <MenuItem onClick={() => navigate("/ambientes")}>Lista de Ambientes</MenuItem>
+            </Menu>
+
+
+            <Button color="inherit" onClick={handleClickInventarios} sx={{ fontWeight: "bold", textTransform: 'capitalize', fontSize: '1rem' }}>
+              Inventarios
+            </Button>
+            <Menu
+              anchorEl={anchorInventarios}
+              open={Boolean(anchorInventarios)}
+              onClose={handleCloseInventarios}
+            >
+              <MenuItem onClick={() => navigate("/inventarios/add")}>Programar Inventario</MenuItem>
+              <MenuItem onClick={() => navigate("/ambientes")}>Lista de Inventarios</MenuItem>
             </Menu>
 
 

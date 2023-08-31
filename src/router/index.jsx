@@ -93,7 +93,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/items/",
+    path: "/item/add",
     element: <ItemAdd />,
     errorElement: <div>Hubo un error!!</div>,
   },
