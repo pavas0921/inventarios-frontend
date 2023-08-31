@@ -18,7 +18,6 @@ import {
   getAllTenants,
   selectTenantState,
 } from "../../features/tenant/tenantSlice";
-import PropertyTable from "./PropertyTable";
 import styles from "./styles/property.form.module.scss";
 
 const PropertyForm = () => {
@@ -152,9 +151,7 @@ const PropertyForm = () => {
           </Button>
         </Box>
       </Box>
-      <Box>
-        <PropertyTable />
-      </Box>
+
     </Box>
   );
 };
