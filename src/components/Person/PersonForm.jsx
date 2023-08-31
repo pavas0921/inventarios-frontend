@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Message } from "../Message";
-import { useSelector, useDispatch } from "react-redux";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  TextField,
+  Typography,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   registerOwner,
   selectOwnerState,
 } from "../../features/owner/ownerSlice";
-import {
-  TextField,
-  Button,
-  Typography,
-  Box,
-  CircularProgress,
-} from "@mui/material";
+import { Message } from "../Message";
 
 const PersonForm = () => {
   const [owner, setOwner] = useState({
@@ -27,9 +27,9 @@ const PersonForm = () => {
   const pathname = window.location.pathname; // "/Propietarios"
   const value = pathname.substring(1);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
-  useEffect(() => {}, [created]);
+  useEffect(() => { }, [created]);
 
   const handleSubmit = (e) => {
     dispatch(registerOwner(owner));
@@ -76,7 +76,7 @@ const PersonForm = () => {
           }}
         >
           <Typography component="h1" variant="h5" marginBottom={3}>
-            Registro de {value}
+            Registro de Propietarios
           </Typography>
           <Box
             sx={{

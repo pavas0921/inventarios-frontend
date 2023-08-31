@@ -1,24 +1,23 @@
-import { createBrowserRouter } from "react-router-dom";
-import { RouterProvider } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { InventoryDetails } from "../components/Inventory";
 import { Login } from "../components/Login";
 import { Register } from "../components/Register";
-import { PropertyForm } from "../components/Property";
 import {
-  Dashboard,
-  Owners,
-  PersonList,
-  PersonDetails,
-  TenantList,
-  Tenant,
-  TenantDetails,
   Ambient,
   AmbientAdd,
-  InventoryPages,
+  Dashboard,
   InventoryByPropertyId,
+  InventoryPages,
   ItemAdd,
+  Owners,
+  PersonDetails,
+  PersonList,
   Properties,
+  Tenant,
+  TenantDetails,
+  TenantList,
 } from "../pages/";
-import { InventoryDetails } from "../components/Inventory";
+import PropertiesList from "../pages/PropertiesList";
 
 const router = createBrowserRouter([
   {
@@ -79,7 +78,7 @@ const router = createBrowserRouter([
 
   {
     path: "/propiedades/",
-    element: <PropertyForm />,
+    element: <PropertiesList />,
     errorElement: <div>Hubo un error!!</div>,
   },
   {
@@ -94,7 +93,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/items/",
+    path: "/item/add",
     element: <ItemAdd />,
     errorElement: <div>Hubo un error!!</div>,
   },

@@ -1,7 +1,8 @@
+import Box from '@mui/material/Box';
+import CssBaseline from "@mui/material/CssBaseline";
 import React from "react";
-import { PropertyForm } from "../components/Property";
-import { Box, CssBaseline } from "@mui/material";
 import { Navbar } from "../components/Navbar";
+import { PropertyForm } from "../components/Property";
 
 const Properties = () => {
   return (

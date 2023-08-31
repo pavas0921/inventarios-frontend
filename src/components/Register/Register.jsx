@@ -1,18 +1,21 @@
-import React, { useState, useEffect } from "react";
-import {
-  Container,
-  TextField,
-  Button,
-  Typography,
-  Box,
-  CssBaseline,
-  CircularProgress,
-  Alert,
-  IconButton,
-} from "@mui/material";
-import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useSelector, useDispatch } from "react-redux";
+import {
+  Alert,
+  Box,
+  Button,
+  CircularProgress,
+  Container,
+  FormControl,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+} from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAllRoles, selectRolState } from "../../features/role/roleSlice";
 import { registerUser, selectUserState } from "../../features/user/userSlice";

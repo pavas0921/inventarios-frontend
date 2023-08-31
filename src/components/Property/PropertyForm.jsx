@@ -1,5 +1,11 @@
+import {
+  Box,
+  Button,
+  TextField,
+} from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getAllOwners,
   selectOwnerState,
@@ -12,23 +18,7 @@ import {
   getAllTenants,
   selectTenantState,
 } from "../../features/tenant/tenantSlice";
-import {
-  Container,
-  TextField,
-  Button,
-  Select,
-  InputLabel,
-  MenuItem,
-  Typography,
-  Box,
-  CssBaseline,
-  CircularProgress,
-  Alert,
-  IconButton,
-} from "@mui/material";
-import Autocomplete from "@mui/material/Autocomplete";
 import styles from "./styles/property.form.module.scss";
-import PropertyTable from "./PropertyTable";
 
 const PropertyForm = () => {
   const ownerdata = useSelector(selectOwnerState);
@@ -161,9 +151,7 @@ const PropertyForm = () => {
           </Button>
         </Box>
       </Box>
-      <Box>
-        <PropertyTable />
-      </Box>
+
     </Box>
   );
 };

@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 //import Loader from "../Loader/Loader";
-import { useParams } from "react-router-dom";
-import { Box, CssBaseline } from "@mui/material";
+import Box from '@mui/material/Box';
+import CssBaseline from "@mui/material/CssBaseline";
 import { Navbar } from "../components/Navbar";
-import { TenantProfile } from "../components/Tenant";
 import { Property } from "../components/Property";
+import { TenantProfile } from "../components/Tenant";
 import styles from "./styles/person.details.module.scss";
 
 const TenantDetails = () => {

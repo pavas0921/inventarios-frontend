@@ -1,7 +1,8 @@
+import Box from '@mui/material/Box';
+import CssBaseline from "@mui/material/CssBaseline";
 import React from "react";
-import { Box, CssBaseline } from "@mui/material";
+import { InventarioDetail, InventoryHeader } from "../components/Inventory";
 import { Navbar } from "../components/Navbar";
-import { InventoryHeader, InventarioDetail } from "../components/Inventory";
 
 const InventoryPages = () => {
   return (

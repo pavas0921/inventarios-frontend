@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import { Box, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   getAllProperties,
   selectPropertyState,
@@ -29,37 +30,43 @@ const PropertyTable = () => {
   }, [data]);
 
   return (
-    <TableContainer sx={{ marginTop: 3 }} component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Dirección</TableCell>
-            <TableCell align="right">Propietario</TableCell>
-            <TableCell align="right">Inquilino</TableCell>
-            <TableCell align="right">Acciones</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {item &&
-            item.map((row, index) => (
-              <TableRow
-                key={index}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {row.address}
-                </TableCell>
-                <TableCell align="right">
-                  {row.ownerId.first_name + ` ` + row.ownerId.last_name}
-                </TableCell>
-                <TableCell align="right">
-                  {row.tenantId.first_name + ` ` + row.tenantId.last_name}
-                </TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Box sx={{ width: "90%" }}>
+      <Box sx={{ marginBottom: "20px", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <Typography variant="h5" color="initial">Lista de Propiedades</Typography>
+      </Box>
+
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Dirección</TableCell>
+              <TableCell align="right">Propietario</TableCell>
+              <TableCell align="right">Inquilino</TableCell>
+              <TableCell align="right">Acciones</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {item &&
+              item.map((row, index) => (
+                <TableRow
+                  key={index}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {row.address}
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.ownerId.first_name + ` ` + row.ownerId.last_name}
+                  </TableCell>
+                  <TableCell align="right">
+                    {row.tenantId.first_name + ` ` + row.tenantId.last_name}
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 };
 
