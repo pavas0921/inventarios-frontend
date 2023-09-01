@@ -1,44 +1,63 @@
-import CloseIcon from "@mui/icons-material/Close";
-import { Alert, Box, IconButton } from "@mui/material";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Box } from '@mui/material';
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Message = (props) => {
-  const navigate = useNavigate();
+  const { message, status } = props
+  const [showAlert, setShowAlert] = useState(false)
 
-
-  const handleAlertClose = () => {
-    console.log(props.path);
-    navigate(props.path);
+  const succesAlert = () => {
+    toast.success(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
+  const errorAlert = () => {
+    toast.error(message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
+  React.useEffect(() => {
+    setShowAlert(true)
+  }, []);
+
+  React.useEffect(() => {
+    if (showAlert) {
+      switch (status) {
+        case "error":
+          errorAlert()
+          break;
+
+        case "success":
+          succesAlert()
+          break;
+      }
+    }
+  }, [showAlert]);
+
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 2,
-      }}
-    >
-      <Box sx={{ width: "400px" }}>
-        <Alert
-          severity="success"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={handleAlertClose}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-        >
-          {props.message}
-        </Alert>
-      </Box>
+    <Box sx={{ height: "100vh" }}>
+      <ToastContainer />
     </Box>
+
+
+
   );
 };
 

@@ -1,23 +1,22 @@
+import EditIcon from "@mui/icons-material/Edit";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { Typography } from "@mui/joy";
+import { Box, Button } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 import React, { useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import Loader from "../Loader/Loader";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   getAllOwners,
   selectOwnerState,
 } from "../../features/owner/ownerSlice";
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { Box, Button } from "@mui/material";
-import { Typography } from "@mui/joy";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import EditIcon from "@mui/icons-material/Edit";
+import Loader from "../Loader/Loader";
 
 const PersonTable = () => {
   const data = useSelector(selectOwnerState);
@@ -42,7 +41,8 @@ const PersonTable = () => {
   return (
     <Box
       sx={{
-        marginTop: 5,
+        width: "100%",
+        marginTop: 2,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -50,7 +50,9 @@ const PersonTable = () => {
       }}
     >
       {data.loading && <Loader />}
-      <Typography component="h1">Lista de Propietarios</Typography>
+      <Typography sx={{ display: "flex", justifyContent: "center", marginBottom: 2 }} component="h1" variant="h1">
+        Lista de Propietarios
+      </Typography>
       <TableContainer
         component={Paper}
         sx={{
