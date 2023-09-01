@@ -30,7 +30,7 @@ const Navbar = () => {
   };
 
   const handleClosePropietarios = () => {
-    anchorPropietarios(null);
+    setAnchorPropietarios(null);
   };
 
   const handleClickInquilinos = (event) => {
@@ -39,7 +39,7 @@ const Navbar = () => {
 
 
   const handleCloseInquilinos = () => {
-    anchorInquilinos(null);
+    setAnchorInquilinos(null);
   };
 
   const handleClickPropiedades = (event) => {
@@ -48,7 +48,7 @@ const Navbar = () => {
 
 
   const handleClosePropiedades = () => {
-    anchorPropiedades(null);
+    setAnchorPropiedades(null);
   };
 
   const handleClickItem = (event) => {

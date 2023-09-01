@@ -1,14 +1,15 @@
-import React from "react";
-import { Box, Alert, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import { Alert, Box, IconButton } from "@mui/material";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Message = (path) => {
+const Message = (props) => {
   const navigate = useNavigate();
 
+
   const handleAlertClose = () => {
-    console.log(path.path);
-    navigate(path.path);
+    console.log(props.path);
+    navigate(props.path);
   };
 
   return (
@@ -34,7 +35,7 @@ const Message = (path) => {
             </IconButton>
           }
         >
-          Registro creado satisfactoriamente.
+          {props.message}
         </Alert>
       </Box>
     </Box>
