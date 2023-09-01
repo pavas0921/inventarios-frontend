@@ -267,7 +267,7 @@ const Navbar = () => {
               onClose={handleCloseInventarios}
             >
               <MenuItem onClick={() => navigate("/inventarios/add")}>Programar Inventario</MenuItem>
-              <MenuItem onClick={() => navigate("/ambientes")}>Lista de Inventarios</MenuItem>
+              <MenuItem onClick={() => navigate("/inventarios")}>Lista de Inventarios</MenuItem>
             </Menu>
 
 

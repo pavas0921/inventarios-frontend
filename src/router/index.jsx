@@ -7,6 +7,7 @@ import {
   AmbientAdd,
   Dashboard,
   InventoryByPropertyId,
+  InventoryList,
   InventoryPages,
   ItemAdd,
   Owners,
@@ -110,6 +111,11 @@ const router = createBrowserRouter([
   {
     path: "/inventario/:index",
     element: <InventoryDetails />,
+    errorElement: <div>Hubo un error!!</div>,
+  },
+  {
+    path: "/inventarios",
+    element: <InventoryList />,
     errorElement: <div>Hubo un error!!</div>,
   },
 ]);
