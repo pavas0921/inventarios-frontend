@@ -1,20 +1,20 @@
-import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import EditIcon from "@mui/icons-material/Edit";
+import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import { Box, Button, Typography } from "@mui/material";
+import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
-import { Button, Box, Typography } from "@mui/material";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import {
   getInventoryByProperty,
   selectInventoryHeaderState,
 } from "../../features/inventoryHeader/inventoryHeaderSlice";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import EditIcon from "@mui/icons-material/Edit";
 
 const InventoryByProperty = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const InventoryByProperty = () => {
     dispatch(getInventoryByProperty(propertyId));
   }, []);
 
-  useEffect(() => {}, [data]);
+  useEffect(() => { }, [data]);
 
   console.log(inventoryHeaders);
 

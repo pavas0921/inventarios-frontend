@@ -63,7 +63,7 @@ const Login = () => {
             borderRadius: "10px",
             boxShadow: "0 3px 20px 0 #8a8d8d",
             padding: "20px",
-
+            backgroundColor: "white"
           }}
         >
           <form onSubmit={handleSubmit}>
