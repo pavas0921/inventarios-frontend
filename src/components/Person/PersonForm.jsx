@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerOwner, selectOwnerState, } from "../../features/owner/ownerSlice";
 import { Message } from "../Message";
+import styles from "./styles/personForm.module.scss";
 
 const PersonForm = () => {
   const [owner, setOwner] = useState({
@@ -41,31 +42,16 @@ const PersonForm = () => {
         </Box>
       )}
 
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: 8,
-          flexDirection: "column",
-        }}
-      >
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            margin: 0,
-            padding: 0,
-            border: "none",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-          }}
+      <Box className={styles.box_title}>
+        <Typography component="h1" variant="h5" marginBottom={2}>
+          Registro de Propietarios
+        </Typography>
+      </Box>
+
+      <Box className={styles.box_main}>
+        <form onSubmit={handleSubmit} className={styles.form}
+
         >
-          <Typography component="h1" variant="h5" marginBottom={2}>
-            Registro de Propietarios
-          </Typography>
           <Box
             sx={{
               display: "flex",

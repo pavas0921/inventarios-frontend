@@ -113,9 +113,8 @@ const Navbar = () => {
               open={Boolean(anchorPropietarios)}
               onClose={handleClosePropietarios}
             >
-              <MenuItem onClick={handleClosePropietarios}>Agregar Paciente</MenuItem>
-              <MenuItem onClick={handleClosePropietarios}>Maestro Pacientes</MenuItem>
-              <MenuItem onClick={handleClosePropietarios}>Eventos por Paciente</MenuItem>
+              <MenuItem onClick={() => navigate('/propietarios')}>Listado de Propietarios</MenuItem>
+              <MenuItem onClick={() => navigate('/propietarios/add')}>Agregar Propietario</MenuItem>
             </Menu>
 
             <Button color="inherit" onClick={handleClickPropietarios} sx={{ fontSize: '1rem' }}>
