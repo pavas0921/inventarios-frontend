@@ -26,8 +26,10 @@ const InventoryHeader = () => {
   const dispatch = useDispatch();
   const data = useSelector(selectPropertyState);
   const created = useSelector(selectInventoryHeaderState);
+  const { inventoryHeader, loading } = created;
+  const { error, message, status } = inventoryHeader
   const { property } = data;
-  const { item, status } = property;
+  //const { item, status } = property;
 
   useEffect(() => {
     dispatch(getAllProperties());
@@ -100,7 +102,12 @@ const InventoryHeader = () => {
         </Box>
 
       </form>
-      {created.inventoryHeader.status === 201 && <Message />}
+
+      {created && message && status && error && (
+        <Box>
+          <Message message={message} status={status} />
+        </Box>
+      )}
     </Box>
   );
 };
