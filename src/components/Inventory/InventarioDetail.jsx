@@ -1,38 +1,32 @@
-import React, { useState, useEffect } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { Button, CircularProgress } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import { Message } from "../Message";
-import Autocomplete from "@mui/material/Autocomplete";
-import {
-  getAllAmbients,
-  selectAmbientState,
-} from "../../features/ambient/ambientSlice";
-import { getAllItem, selectItemState } from "../../features/item/itemSlice";
-import {
-  getAllItemDetail,
-  registerItemDetail,
-  selectItemDetailState,
-} from "../../features/itemDetail/itemDetailSlice";
-import {
-  getAllInventoryDetail,
-  registerInventoryDetail,
-  selectInventoryDetailState,
-} from "../../features/inventoryDetail/inventoryDetailSlice";
-import { selectInventoryHeaderState } from "../../features/inventoryHeader/inventoryHeaderSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { Button } from "@mui/material";
 import Alert from "@mui/material/Alert";
+import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllAmbients, selectAmbientState, } from "../../features/ambient/ambientSlice";
+import { registerInventoryDetail } from "../../features/inventoryDetail/inventoryDetailSlice";
+import { selectInventoryHeaderState } from "../../features/inventoryHeader/inventoryHeaderSlice";
+import { getAllItem, selectItemState } from "../../features/item/itemSlice";
+import { registerItemDetail, selectItemDetailState } from "../../features/itemDetail/itemDetailSlice";
+import styles from "./styles/inventarioDetail.module.scss";
 
 const InventarioDetails = () => {
+  //Constantes para los estados de los ambientes.
   const ambientData = useSelector(selectAmbientState);
+  const { ambient } = ambientData
+  const { itemAmbient } = ambient
+
+
   const itemData = useSelector(selectItemState);
+  const { item } = itemData;
+  const { dataItem } = item
   const itemDetailData = useSelector(selectItemDetailState);
   const inventoryHeader = useSelector(selectInventoryHeaderState);
   const dispatch = useDispatch();
-  const [itemOptions, setItemOptions] = useState([]);
-  const [ambientOptions, setAmbientOptions] = useState([]);
   const [itemDetail, setItemDetail] = useState({
     itemId: "",
     status: "",
@@ -41,6 +35,7 @@ const InventarioDetails = () => {
     comments: "",
   });
   const [ambientSelected, setAmbientSelected] = useState("");
+  const [itemSelected, setItemSelected] = useState("");
   const [inventoryId, setInventoryId] = useState("");
   const [inventoryDetail, setInventoryDetail] = useState([]);
   const [inventoryDetails, setInventoryDetails] = useState([]);
@@ -51,27 +46,6 @@ const InventarioDetails = () => {
     dispatch(getAllItem());
   }, []);
 
-  useEffect(() => {
-    const optionsX = itemData.item.item;
-    const optionsY = ambientData.ambient.item;
-    if (optionsX) {
-      const itemOptions = optionsX.map((row, index) => ({
-        label: row.itemName,
-        id: row._id,
-        key: index,
-      }));
-      setItemOptions(itemOptions);
-    }
-
-    if (optionsY) {
-      const ambientOptions = optionsY.map((row, index) => ({
-        label: row.ambientName,
-        id: row._id,
-        key: index,
-      }));
-      setAmbientOptions(ambientOptions);
-    }
-  }, [itemData, ambientData]);
 
   useEffect(() => {
     if (inventoryHeader.inventoryHeader.status === 201) {
@@ -81,8 +55,8 @@ const InventarioDetails = () => {
   }, [inventoryHeader]);
 
   useEffect(() => {
-    console.log(inventoryDetail);
-  }, [inventoryDetail]);
+    console.log("itemData", dataItem);
+  }, [dataItem]);
 
   useEffect(() => {
     if (itemDetailData.itemDetail.status === 201) {
@@ -121,96 +95,84 @@ const InventarioDetails = () => {
 
   return (
     <form onSubmit={handleClick}>
-      <Box
-        sx={{
-          width: "80%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          border: "1px solid #ccc",
-          borderRadius: 1,
-        }}
-      >
-        <Box sx={{ marginTop: 2 }}>
+      <Box className={styles.box_main}>
+        <Box className={styles.box_title}>
           <Typography variant="h5">Registro de detalles</Typography>
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
-            flexDirection: "row",
-            marginTop: 2,
-            width: "80%",
-          }}
-        >
-          <Autocomplete
-            options={ambientOptions}
-            renderInput={(params) => (
-              <TextField {...params} label="Ambientes" />
-            )}
-            value={ambientOptions.ambientId}
-            onChange={(event, newValue) => {
-              console.log("****", newValue);
-              setAmbientSelected({
-                ...ambientSelected,
-                ambientId: newValue.id,
-              });
-            }}
-            sx={{ width: 300 }}
-          />
-          <Autocomplete
-            options={itemOptions}
-            renderInput={(params) => <TextField {...params} label="Items" />}
-            value={itemOptions.itemId}
-            onChange={(event, newValue) => {
-              setItemDetail({ ...itemDetail, itemId: newValue.id });
-            }}
-            sx={{ width: 300 }}
-          />
+        <Box className={styles.box_autocomplete}>
+
+
+          {itemAmbient && itemAmbient.length > 0 && (
+            //Selector de ambientes
+            <Autocomplete
+              id="ambient"
+              options={itemAmbient}
+              getOptionLabel={(itemAmbient) => itemAmbient.ambientName}
+              renderInput={(params) => (
+                <TextField {...params} label="Ambientes" />
+              )}
+              onChange={(event, newValue) => {
+                console.log("****", newValue);
+                setAmbientSelected({
+                  ...ambientSelected,
+                  ambientId: newValue.id,
+                });
+              }}
+              sx={{ width: 300 }}
+            />
+          )}
+
+          {dataItem && dataItem.length > 0 && (
+            //Selector de Items
+            <Autocomplete
+              id="item"
+              options={dataItem}
+              getOptionLabel={(dataItem) => dataItem.itemName}
+              renderInput={(params) => (
+                <TextField {...params} label="Items" />
+              )}
+              onChange={(event, newValue) => {
+                console.log("****", newValue);
+                setItemSelected({
+                  ...itemSelected,
+                  itemId: newValue.id,
+                });
+              }}
+              sx={{ width: 300 }}
+            />
+          )}
+
         </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
-            flexDirection: "row",
-            marginTop: 2,
-            width: "80%",
-          }}
-        >
+        <Box className={styles.box_inputs}>
           <TextField
             required
             id="outlined-required"
             label="Estado"
-            onChange={(e) =>
-              setItemDetail({ ...itemDetail, status: e.target.value })
-            }
+            onChange={(e) => setItemDetail({ ...itemDetail, status: e.target.value })}
           />
           <TextField
             required
             id="outlined-required"
             label="Material"
-            onChange={(e) =>
-              setItemDetail({ ...itemDetail, material: e.target.value })
-            }
+            onChange={(e) => setItemDetail({ ...itemDetail, material: e.target.value })}
           />
           <TextField
             required
             id="outlined-required"
             label="Color"
-            onChange={(e) =>
-              setItemDetail({ ...itemDetail, color: e.target.value })
-            }
+            onChange={(e) => setItemDetail({ ...itemDetail, color: e.target.value })}
           />
+
+        </Box>
+        <Box className={styles.box_textArea}>
           <TextField
             required
             id="outlined-required"
             label="Observaciones"
-            onChange={(e) =>
-              setItemDetail({ ...itemDetail, comments: e.target.value })
-            }
+            multiline
+            rows={5}
+            onChange={(e) => setItemDetail({ ...itemDetail, comments: e.target.value })}
+            className={styles.textArea}
           />
         </Box>
         <Box sx={{ marginTop: 2, paddingBottom: 2 }}>

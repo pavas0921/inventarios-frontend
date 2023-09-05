@@ -1,13 +1,21 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
-  registerInventoryHeaderAPI,
   getInventoryByPropertyApi,
+  getInventoryHeaderApi,
+  registerInventoryHeaderAPI
 } from "../../services/inventoryHeader";
 
 const initialState = {
   inventoryHeader: [],
   loading: false,
 };
+
+export const getInventoryHeader = createAsyncThunk(
+  "inventory/getInventoryHeader", async () => {
+    const data = await getInventoryHeaderApi();
+    return data;
+  }
+);
 
 export const registerInventoryHeader = createAsyncThunk(
   "inventoryHeader/create",
@@ -18,7 +26,7 @@ export const registerInventoryHeader = createAsyncThunk(
 );
 
 export const getInventoryByProperty = createAsyncThunk(
-  "owner/getInventoryByProperty",
+  "inventory/getInventoryByProperty",
   async (propertyId) => {
     const data = await getInventoryByPropertyApi(propertyId);
     return data;
@@ -44,7 +52,15 @@ export const inventoryHeaderSlice = createSlice({
       .addCase(getInventoryByProperty.fulfilled, (state, action) => {
         state.loading = false;
         state.inventoryHeader = action.payload;
-      });
+      })
+      .addCase(getInventoryHeader.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getInventoryHeader.fulfilled, (state, action) => {
+        state.loading = false;
+        state.inventoryHeader = action.payload;
+      })
+      ;
   },
 });
 
