@@ -17,20 +17,22 @@ const AmbientCard = () => {
   const dispatch = useDispatch();
   const data = useSelector(selectAmbientState);
   const { ambient } = data;
-  const { item, status } = ambient;
+  const { itemAmbient, status } = ambient;
 
   useEffect(() => {
     dispatch(getAllAmbients());
   }, []);
 
   useEffect(() => {
-    if (data) console.log("data****", item);
+    if (data) {
+      console.log(data)
+    }
   }, [data]);
 
   return (
     <Box className={styles.box_main}>
-      {item &&
-        item.map((row, index) => (
+      {itemAmbient &&
+        itemAmbient.map((row, index) => (
           <Card
             sx={{ maxWidth: 345, marginBottom: 2, marginTop: 2 }}
             key={index}

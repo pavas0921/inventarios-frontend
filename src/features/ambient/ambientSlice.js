@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getAllAmbientsApi, registerAmbientAPI } from "../../services/ambient";
 
 const initialState = {
