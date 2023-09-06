@@ -1,0 +1,103 @@
+.box_main{    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 820px) {
+        width: 100%;
+    }   
+
+    .form{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        @media (max-width: 820px) {
+            width: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }  
+
+        .box_form{
+            width: 49% ;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            @media (max-width: 820px) {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            } 
+            
+            .box_column{
+                width: 49% ;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: column;
+
+                @media (max-width: 820px) {
+                    width: 80%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                } 
+            }
+        }
+
+        .box_button{
+            width: 50%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+
+            @media (max-width: 820px) {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .box_button_btn{
+                width: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                @media (max-width: 820px) {
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-top: 20px;
+                }
+            }
+
+            
+
+            
+        }
+        
+
+       
+        
+    }
+}
+
+.box_title{
+    width: "50%";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

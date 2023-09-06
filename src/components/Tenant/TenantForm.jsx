@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerTenant, selectTenantState, } from "../../features/tenant/tenantSlice";
 import { Message } from "../Message";
+import styles from "./styles/personForm.module.scss";
 
 const TenantForm = () => {
   const [tenant, setTenant] = useState({
@@ -43,48 +44,14 @@ const TenantForm = () => {
       )}
 
 
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: 8,
-          flexDirection: "column",
-        }}
-      >
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            margin: 0,
-            padding: 0,
-            border: "none",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-          }}
-        >
+      <Box className={styles.box_main}>
+        <form className={styles.form}
+          onSubmit={handleSubmit}>
           <Typography component="h1" variant="h5" marginBottom={3}>
             Registro de Inquilinos
           </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              width: "49%",
-              justifyContent: "space-around",
-              alignItems: "center",
-            }}
-          >
-            <Box
-              sx={{
-                width: "48%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
+          <Box className={styles.box_form} >
+            <Box className={styles.box_column} >
               <TextField
                 margin="normal"
                 required
@@ -122,15 +89,7 @@ const TenantForm = () => {
                 }
               />
             </Box>
-            <Box
-              sx={{
-                width: "48%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
+            <Box className={styles.box_column} >
               <TextField
                 margin="normal"
                 required
@@ -169,19 +128,17 @@ const TenantForm = () => {
               />
             </Box>
           </Box>
-          <Box
-            sx={{
-              width: "34%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-around",
-              marginTop: 5,
-            }}
-          >
-            <Button variant="contained" type="submit">
-              Registrar Inquilino
-            </Button>
-            <Button variant="contained" onClick={() => navigate("/inquilinos")}>Ir al Listado de Inquilinos</Button>
+          <Box className={styles.box_button}>
+            <Box className={styles.box_button_btn}>
+              <Button variant="contained" type="submit">
+                Registrar Inquilino
+              </Button>
+            </Box>
+            <Box className={styles.box_button_btn}>
+              <Button variant="contained" onClick={() => navigate("/inquilinos")}>Ir al Listado de Inquilinos</Button>
+            </Box>
+
+
 
           </Box>
         </form>
