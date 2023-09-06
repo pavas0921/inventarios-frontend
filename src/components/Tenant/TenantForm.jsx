@@ -1,16 +1,8 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Button, CircularProgress, TextField, Typography, } from "@mui/material";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  registerTenant,
-  selectTenantState,
-} from "../../features/tenant/tenantSlice";
+import { useNavigate } from "react-router-dom";
+import { registerTenant, selectTenantState, } from "../../features/tenant/tenantSlice";
 import { Message } from "../Message";
 
 const TenantForm = () => {
@@ -24,22 +16,20 @@ const TenantForm = () => {
   });
   const created = useSelector(selectTenantState);
   const dispatch = useDispatch();
-  const pathname = window.location.pathname; // "/Propietarios"
-  const value = pathname.substring(1);
-
-  useEffect(() => { }, []);
-
-  useEffect(() => { }, [created]);
+  const navigate = useNavigate();
+  const { loading } = created;
+  const error = created.tenant.error;
+  const message = created.tenant.message;
+  const status = created.tenant.status;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerTenant(tenant));
-    console.log(created);
   };
 
   return (
     <div>
-      {created && created.loading && (
+      {loading && (
         <Box
           sx={{
             display: "flex",
@@ -52,7 +42,7 @@ const TenantForm = () => {
         </Box>
       )}
 
-      {created.tenant.status === 201 && <Message path="/Inquilinos" />}
+
       <Box
         sx={{
           width: "100%",
@@ -181,20 +171,24 @@ const TenantForm = () => {
           </Box>
           <Box
             sx={{
-              width: "20%",
+              width: "34%",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-around",
               marginTop: 5,
             }}
           >
-            <Button variant="contained">Cancelar</Button>
             <Button variant="contained" type="submit">
-              Enviar
+              Registrar Inquilino
             </Button>
+            <Button variant="contained" onClick={() => navigate("/inquilinos")}>Ir al Listado de Inquilinos</Button>
+
           </Box>
         </form>
       </Box>
+      {status && message && error && !loading && (
+        <Message message={message} status={status} />
+      )}
     </div>
   );
 };

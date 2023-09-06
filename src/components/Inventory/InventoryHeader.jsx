@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from "react";
+import { Button } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Button, CircularProgress } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { Message } from "../Message";
-import Autocomplete from "@mui/material/Autocomplete";
-import {
-  getAllProperties,
-  selectPropertyState,
-} from "../../features/property/propertySlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   registerInventoryHeader,
   selectInventoryHeaderState,
 } from "../../features/inventoryHeader/inventoryHeaderSlice";
-import { useSelector, useDispatch } from "react-redux";
+import {
+  getAllProperties,
+  selectPropertyState,
+} from "../../features/property/propertySlice";
+import { Message } from "../Message";
+import styles from "./styles/inventarioHeader.module.scss";
 
 const InventoryHeader = () => {
   const [inventoryData, setInventoryData] = useState({
@@ -25,14 +26,20 @@ const InventoryHeader = () => {
   const dispatch = useDispatch();
   const data = useSelector(selectPropertyState);
   const created = useSelector(selectInventoryHeaderState);
+  const { inventoryHeader, loading } = created;
+  const { error, message, status } = inventoryHeader
   const { property } = data;
-  const { item, status } = property;
+  //const { item, status } = property;
 
   useEffect(() => {
     dispatch(getAllProperties());
   }, []);
 
-  useEffect(() => {}, [created]);
+  useEffect(() => {
+    console.log("created", created)
+  }, [created]);
+
+  useEffect(() => { }, [created]);
 
   useEffect(() => {
     if (property && property.item) {
@@ -51,31 +58,12 @@ const InventoryHeader = () => {
   };
 
   return (
-    <Box
-      sx={{
-        width: "80%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        flexDirection: "column",
-        border: "1px solid #ccc",
-        borderRadius: 1,
-      }}
-    >
-      <Box sx={{ marginTop: 2 }}>
+    <Box className={styles.box_main}>
+      <Box className={styles.box_title} >
         <Typography variant="h5">Registro de Inventario</Typography>
       </Box>
-      <form onSubmit={handleSubmit}>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
-            flexDirection: "row",
-            marginTop: 2,
-            width: "100%",
-          }}
-        >
+      <form onSubmit={handleSubmit} className={styles.form_tag}>
+        <Box className={styles.box_form}>
           <Autocomplete
             options={propertyOptions}
             renderInput={(params) => (
@@ -85,34 +73,41 @@ const InventoryHeader = () => {
             onChange={(event, newValue) => {
               setInventoryData({ ...inventoryData, propertyId: newValue.id });
             }}
-            sx={{ width: 400 }}
+            className={styles.autocomplete}
           />
           <TextField
-            sx={{ width: "70%" }}
             required
             id="outlined-required"
             label="MM/DD/AAAA"
             onChange={(e) =>
               setInventoryData({ ...inventoryData, date: e.target.value })
             }
+            className={styles.textfield}
           />
           <TextField
-            sx={{ width: "70%" }}
             required
             id="outlined-required"
             label="Nombre de quien recibe"
             onChange={(e) =>
               setInventoryData({ ...inventoryData, witness: e.target.value })
             }
+            className={styles.textfield}
           />
+
+          <Box className={styles.box_button}>
+            <Button variant="contained" type="submit">
+              Registrar Inventario
+            </Button>
+          </Box>
         </Box>
-        <Box sx={{ marginTop: 2, paddingBottom: 2 }}>
-          <Button variant="contained" type="submit">
-            Registrar Inventario
-          </Button>
-        </Box>
+
       </form>
-      {created.inventoryHeader.status === 201 && <Message />}
+
+      {created && message && status && error && (
+        <Box>
+          <Message message={message} status={status} />
+        </Box>
+      )}
     </Box>
   );
 };

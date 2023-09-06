@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login, selectLoginState } from "../../features/login/loginSlice";
 import Message from "../Message/Message";
+import styles from "./login.module.scss";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -14,7 +15,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const dataLogin = useSelector(selectLoginState);
   const { loading, user } = dataLogin
-  const { error, message } = user
+  const { error, message, status } = user
   const token = user?.data?.token;
   const iduser = user?.data?.iduser;
   const navigate = useNavigate();
@@ -49,8 +50,7 @@ const Login = () => {
 
 
   return (
-    <Box sx={{ width: "100%", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-
+    <Box className={styles.box_main}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -120,16 +120,12 @@ const Login = () => {
             <CircularProgress />
           </Box>
         )}
-
-        {!loading && error && message === "Credenciales incorrectas" && (
-          <Box>
-            <Message message={message} />
-          </Box>
-        )}
-
-
-
       </Container>
+      {!loading && error && message === "Nombre de usuario y/o contraseña incorrecta." && status === "error" && (
+        <Box>
+          <Message message={message} status={status} />
+        </Box>
+      )}
     </Box>
   );
 };

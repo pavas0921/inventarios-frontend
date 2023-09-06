@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { Button, CircularProgress, Input } from "@mui/material";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   registerAmbient,
   selectAmbientState,
 } from "../../features/ambient/ambientSlice";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import { Button } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import { Input, CircularProgress } from "@mui/material";
 import { Message } from "../Message";
+import styles from "./styles/ambientForm.module.scss";
 const cloudName = "dinxdqo76";
 
 const AmbientForm = () => {
@@ -31,7 +27,7 @@ const AmbientForm = () => {
     }
   }, [ambient]);
 
-  useEffect(() => {}, [created]);
+  useEffect(() => { }, [created]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,14 +65,7 @@ const AmbientForm = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
+    <Box className={styles.box_main}>
       {created.loading && (
         <Box
           sx={{
@@ -91,13 +80,14 @@ const AmbientForm = () => {
       )}
 
       {created.ambient.status === 201 && <Message path="/Ambientes" />}
-      <form onSubmit={handleSubmit}>
-        <Card sx={{ maxWidth: 345 }}>
-          <CardMedia sx={{ height: 140 }} image={url} title="green iguana" />
-          <CardContent>
+      <form onSubmit={handleSubmit} className={styles.form_tag}>
+        <Box className={styles.box_form}>
+          <Box className={styles.box_title}>
             <Typography gutterBottom variant="h5" component="div">
               Registro de Ambientes
             </Typography>
+          </Box>
+          <Box className={styles.box_textField}>
             <TextField
               required
               id="outlined-required"
@@ -105,15 +95,19 @@ const AmbientForm = () => {
               onChange={(e) =>
                 setAmbient({ ...ambient, ambientName: e.target.value })
               }
+              className={styles.textField}
             />
-          </CardContent>
-          <CardActions>
-            <Input type="file" onChange={handleChange} />
+          </Box>
+          <Box className={styles.box_inputFile}>
+            <Input type="file" onChange={handleChange} className={styles.inputFile} />
+          </Box>
+          <Box className={styles.box_button}>
             <Button variant="contained" type="submit">
               Subir imagen
             </Button>
-          </CardActions>
-        </Card>
+          </Box>
+
+        </Box>
       </form>
     </Box>
   );

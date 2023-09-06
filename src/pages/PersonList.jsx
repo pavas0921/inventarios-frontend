@@ -11,7 +11,7 @@ const PersonList = () => {
       <Box sx={{ width: "100vw" }}>
         <Navbar />
       </Box>
-      <Box>
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "100%" }}>
         <PersonTable />
       </Box>
     </>

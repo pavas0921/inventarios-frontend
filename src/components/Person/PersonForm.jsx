@@ -1,17 +1,10 @@
-import {
-  Box,
-  Button,
-  CircularProgress,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Button, CircularProgress, TextField, Typography, } from "@mui/material";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  registerOwner,
-  selectOwnerState,
-} from "../../features/owner/ownerSlice";
+import { useNavigate } from "react-router-dom";
+import { registerOwner, selectOwnerState, } from "../../features/owner/ownerSlice";
 import { Message } from "../Message";
+import styles from "./styles/personForm.module.scss";
 
 const PersonForm = () => {
   const [owner, setOwner] = useState({
@@ -22,14 +15,11 @@ const PersonForm = () => {
     address: "",
     phone: "",
   });
-  const created = useSelector(selectOwnerState);
   const dispatch = useDispatch();
-  const pathname = window.location.pathname; // "/Propietarios"
-  const value = pathname.substring(1);
+  const navigate = useNavigate();
+  const created = useSelector(selectOwnerState);
+  const { loading } = created;
 
-  useEffect(() => { }, []);
-
-  useEffect(() => { }, [created]);
 
   const handleSubmit = (e) => {
     dispatch(registerOwner(owner));
@@ -39,7 +29,7 @@ const PersonForm = () => {
 
   return (
     <div>
-      {created.loading && (
+      {loading && (
         <Box
           sx={{
             display: "flex",
@@ -52,32 +42,16 @@ const PersonForm = () => {
         </Box>
       )}
 
-      {created.owner.status === 201 && <Message path="/Propietarios" />}
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          marginTop: 8,
-          flexDirection: "column",
-        }}
-      >
-        <form
-          onSubmit={handleSubmit}
-          style={{
-            margin: 0,
-            padding: 0,
-            border: "none",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-          }}
+      <Box className={styles.box_title}>
+        <Typography component="h1" variant="h5" marginBottom={2}>
+          Registro de Propietarios
+        </Typography>
+      </Box>
+
+      <Box className={styles.box_main}>
+        <form onSubmit={handleSubmit} className={styles.form}
+
         >
-          <Typography component="h1" variant="h5" marginBottom={3}>
-            Registro de Propietarios
-          </Typography>
           <Box
             sx={{
               display: "flex",
@@ -147,6 +121,7 @@ const PersonForm = () => {
                 label="Correo"
                 name="email"
                 autoComplete="email"
+                type="email"
                 onChange={(e) => setOwner({ ...owner, email: e.target.value })}
               />
               <TextField
@@ -175,20 +150,26 @@ const PersonForm = () => {
           </Box>
           <Box
             sx={{
-              width: "20%",
+              width: "38%",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-around",
               marginTop: 5,
             }}
           >
-            <Button variant="contained">Cancelar</Button>
             <Button variant="contained" type="submit">
-              Enviar
+              Registrar Propietario
             </Button>
+            <Button variant="contained" onClick={() => (navigate("/propietarios"))}>Ir al Listado de Propietarios</Button>
+
           </Box>
         </form>
       </Box>
+      {!loading && created.owner.error && created.owner.message && created.owner.status && (
+        <Box>
+          <Message message={created.owner.message} status={created.owner.status} />
+        </Box>
+      )}
     </div>
   );
 };

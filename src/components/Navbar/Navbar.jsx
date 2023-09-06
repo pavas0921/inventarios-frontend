@@ -10,6 +10,7 @@ import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ModalComponent } from "../Modal";
 
 const Navbar = () => {
   const [anchorPropietarios, setAnchorPropietarios] = React.useState(null);
@@ -20,9 +21,12 @@ const Navbar = () => {
   const [anchorInventarios, setAnchorInventarios] = React.useState(null);
   const [anchorAdministracion, setAnchorAdministracion] = React.useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [modalOption, setModalOption] = React.useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const navigate = useNavigate()
+
 
 
   const handleClickPropietarios = (event) => {
@@ -86,6 +90,23 @@ const Navbar = () => {
     setAnchorAdministracion(null);
   };
 
+  const handleItem = () => {
+    setModalOpen(true);
+    setModalOption(1);
+  }
+
+  const handleAmbiente = () => {
+    setModalOpen(true);
+    setModalOption(2);
+  }
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  }
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  }
 
 
 
@@ -113,9 +134,8 @@ const Navbar = () => {
               open={Boolean(anchorPropietarios)}
               onClose={handleClosePropietarios}
             >
-              <MenuItem onClick={handleClosePropietarios}>Agregar Paciente</MenuItem>
-              <MenuItem onClick={handleClosePropietarios}>Maestro Pacientes</MenuItem>
-              <MenuItem onClick={handleClosePropietarios}>Eventos por Paciente</MenuItem>
+              <MenuItem onClick={() => navigate('/propietarios')}>Listado de Propietarios</MenuItem>
+              <MenuItem onClick={() => navigate('/propietarios/add')}>Agregar Propietario</MenuItem>
             </Menu>
 
             <Button color="inherit" onClick={handleClickPropietarios} sx={{ fontSize: '1rem' }}>
@@ -241,7 +261,7 @@ const Navbar = () => {
               open={Boolean(anchorItem)}
               onClose={handleCloseItem}
             >
-              <MenuItem onClick={() => navigate('/item/add')}>Agregar Item</MenuItem>
+              <MenuItem onClick={handleItem}>Agregar Item</MenuItem>
               <MenuItem onClick={() => navigate('/propiedades')}>Lista de Items</MenuItem>
             </Menu>
 
@@ -253,7 +273,7 @@ const Navbar = () => {
               open={Boolean(anchorAmbientes)}
               onClose={handleCloseAmbientes}
             >
-              <MenuItem onClick={() => navigate("/ambientes/add")}>Agregar Ambiente</MenuItem>
+              <MenuItem onClick={handleAmbiente}>Agregar Ambiente</MenuItem>
               <MenuItem onClick={() => navigate("/ambientes")}>Lista de Ambientes</MenuItem>
             </Menu>
 
@@ -267,7 +287,7 @@ const Navbar = () => {
               onClose={handleCloseInventarios}
             >
               <MenuItem onClick={() => navigate("/inventarios/add")}>Programar Inventario</MenuItem>
-              <MenuItem onClick={() => navigate("/ambientes")}>Lista de Inventarios</MenuItem>
+              <MenuItem onClick={() => navigate("/inventarios")}>Lista de Inventarios</MenuItem>
             </Menu>
 
 
@@ -287,8 +307,11 @@ const Navbar = () => {
             </Menu>
           </>
         )}
-        {/* Resto del código del componente */}
+
       </Toolbar>
+      {modalOpen && (
+        <ModalComponent open={modalOpen} onClose={handleCloseModal} modalOption={modalOption} />
+      )}
     </AppBar>
   );
 }

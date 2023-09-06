@@ -1,0 +1,27 @@
+.box_main{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 820px) {
+        width: auto;
+        margin-bottom: 5px;
+    }   
+
+    .form{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        
+    }
+}
+
+.box_title{
+    width: "50%";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
