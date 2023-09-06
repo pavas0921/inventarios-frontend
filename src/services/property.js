@@ -1,6 +1,7 @@
+const API_BASE_URI =  "https://inventarios-backend-irgx.onrender.com";
 export const getAllPropertiesAPI = async () => {
   try {
-    const request = await fetch(`http://localhost:4000/property`, {
+    const request = await fetch(`${API_BASE_URI}/property`, {
       method: "GET",
       headers: {
         //Authorization: `Bearer ${token}`,
@@ -16,7 +17,7 @@ export const getAllPropertiesAPI = async () => {
 
 export const registerPropertyAPI = async (body) => {
   try {
-    const req = await fetch("http://localhost:4000/property", {
+    const req = await fetch(`${API_BASE_URI}/property`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +36,7 @@ export const getPropertiesByTenantIdAPI = async (body) => {
   console.log(body);
   try {
     const request = await fetch(
-      `http://localhost:4000/property/tenant/${body}`,
+      `${API_BASE_URI}/property/tenant/${body}`,
       {
         method: "GET",
         headers: {

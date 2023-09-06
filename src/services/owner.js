@@ -1,6 +1,7 @@
+const API_BASE_URI =  "https://inventarios-backend-irgx.onrender.com";
 export const getAllOwnersApi = async () => {
   try {
-    const request = await fetch(`http://localhost:4000/owner`, {
+    const request = await fetch(`${API_BASE_URI}/owner`, {
       method: "GET",
       headers: {
         //Authorization: `Bearer ${token}`,
@@ -16,7 +17,7 @@ export const getAllOwnersApi = async () => {
 export const getAOwnersByCedulaApi = async (id) => {
   console.log(id);
   try {
-    const request = await fetch(`http://localhost:4000/owner/${id}`, {
+    const request = await fetch(`${API_BASE_URI}/owner/${id}`, {
       method: "GET",
       headers: {
         //Authorization: `Bearer ${token}`,
@@ -31,7 +32,7 @@ export const getAOwnersByCedulaApi = async (id) => {
 
 export const registerOwnerAPI = async (body) => {
   try {
-    const req = await fetch("http://localhost:4000/owner", {
+    const req = await fetch(`${API_BASE_URI}/owner`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

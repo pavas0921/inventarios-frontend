@@ -1,6 +1,7 @@
+const API_BASE_URI =  "https://inventarios-backend-irgx.onrender.com";
 export const getAllItemDetailApi = async () => {
   try {
-    const request = await fetch(`http://localhost:4000/itemDetail`, {
+    const request = await fetch(`${API_BASE_URI}/itemDetail`, {
       method: "GET",
       headers: {
         //Authorization: `Bearer ${token}`,
@@ -15,7 +16,7 @@ export const getAllItemDetailApi = async () => {
 
 export const registerItemDetailAPI = async (body) => {
   try {
-    const req = await fetch("http://localhost:4000/itemDetail", {
+    const req = await fetch(`${API_BASE_URI}/itemDetail`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,8 @@
+const API_BASE_URI =  "https://inventarios-backend-irgx.onrender.com";
+
 export const getAllAmbientsApi = async () => {
   try {
-    const request = await fetch(`http://localhost:4000/ambient`, {
+    const request = await fetch(`${API_BASE_URI}/ambient`, {
       method: "GET",
       headers: {
         //Authorization: `Bearer ${token}`,
@@ -15,7 +17,7 @@ export const getAllAmbientsApi = async () => {
 
 export const registerAmbientAPI = async (body) => {
   try {
-    const req = await fetch("http://localhost:4000/ambient", {
+    const req = await fetch(`${API_BASE_URI}/ambient`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,6 +1,7 @@
+const API_BASE_URI =  "https://inventarios-backend-irgx.onrender.com";
 export const registerUserAPI = async (body) => {
   try {
-    const req = await fetch("http://localhost:4000/user", {
+    const req = await fetch(`${API_BASE_URI}/user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,7 +18,7 @@ export const registerUserAPI = async (body) => {
 
 export const loginAPI = async (body) => {
   try {
-    const req = await fetch("http://localhost:4000/user/login", {
+    const req = await fetch(`${API_BASE_URI}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
