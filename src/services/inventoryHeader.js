@@ -1,7 +1,8 @@
 const API_BASE_URI =  "https://inventarios-backend-irgx.onrender.com";
+
 export const registerInventoryHeaderAPI = async (body) => {
   try {
-    const req = await fetch(`${API_BASE_URI}:4000/inventoryHeader`, {
+    const req = await fetch(`${API_BASE_URI}/inventoryHeader`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,7 +20,7 @@ export const registerInventoryHeaderAPI = async (body) => {
 export const getInventoryByPropertyApi = async (propertyId) => {
   try {
     const request = await fetch(
-      `${API_BASE_URI}:4000/inventoryHeader/${propertyId}`,
+      `${API_BASE_URI}/inventoryHeader/${propertyId}`,
       {
         method: "GET",
         headers: {
@@ -37,7 +38,7 @@ export const getInventoryByPropertyApi = async (propertyId) => {
 export const getInventoryHeaderApi = async () => {
   try {
     const request = await fetch(
-      `${API_BASE_URI}:4000/inventoryHeader`,
+      `${API_BASE_URI}/inventoryHeader`,
       {
         method: "GET",
         headers: {

@@ -1,4 +1,5 @@
 const API_BASE_URI =  "https://inventarios-backend-irgx.onrender.com";
+
 export const registerUserAPI = async (body) => {
   try {
     const req = await fetch(`${API_BASE_URI}/user`, {
