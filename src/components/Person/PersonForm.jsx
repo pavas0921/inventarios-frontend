@@ -49,26 +49,9 @@ const PersonForm = () => {
       </Box>
 
       <Box className={styles.box_main}>
-        <form onSubmit={handleSubmit} className={styles.form}
-
-        >
-          <Box
-            sx={{
-              display: "flex",
-              width: "49%",
-              justifyContent: "space-around",
-              alignItems: "center",
-            }}
-          >
-            <Box
-              sx={{
-                width: "48%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <Box className={styles.box_form}>
+            <Box className={styles.box_column}>
               <TextField
                 margin="normal"
                 required
@@ -104,15 +87,7 @@ const PersonForm = () => {
                 onChange={(e) => setOwner({ ...owner, cedula: e.target.value })}
               />
             </Box>
-            <Box
-              sx={{
-                width: "48%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
-              }}
-            >
+            <Box className={styles.box_column} >
               <TextField
                 margin="normal"
                 required
@@ -148,21 +123,19 @@ const PersonForm = () => {
               />
             </Box>
           </Box>
-          <Box
-            sx={{
-              width: "38%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-around",
-              marginTop: 5,
-            }}
-          >
-            <Button variant="contained" type="submit">
-              Registrar Propietario
-            </Button>
-            <Button variant="contained" onClick={() => (navigate("/propietarios"))}>Ir al Listado de Propietarios</Button>
+          <Box className={styles.box_button}>
+            <Box className={styles.box_button_btn}>
+              <Button variant="contained" type="submit">
+                Registrar Propietario
+              </Button>
+            </Box>
 
+            <Box className={styles.box_button_btn}>
+              <Button variant="contained" onClick={() => (navigate("/propietarios"))}>Ir al Listado de Propietarios</Button>
+            </Box>
           </Box>
+
+
         </form>
       </Box>
       {!loading && created.owner.error && created.owner.message && created.owner.status && (
